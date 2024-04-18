@@ -6,6 +6,12 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: fit-content;
   background-color: #f4f4f5;
 
   display: flex;
@@ -27,7 +33,7 @@ body {
   gap: 2rem;
 
   width: 85%;
-  max-width: 600px;
+  max-width: 480px;
 }
 
 h1 {
@@ -45,4 +51,20 @@ select, input {
 label {
   width: 100%;
   font-size: 1.2rem;
+}
+
+button {
+  border-radius: 0.5rem;
+  border: 1px solid #0000001c;
+  background-color: #14b8a6;
+  color: #FFF;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.2rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: 0.3s;
+
 }

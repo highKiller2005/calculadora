@@ -6,12 +6,20 @@ const operators = [
   'potência',
 ]
 
+/**
+ * @typedef {(numbers: number[]) => number} CalculatorFunctionType
+ * @typedef {Object.<string, CalculatorFunctionType>} CalculatorType
+ */
+
+/**
+ * @type {CalculatorType} 
+ */
 const calculator = {
-  'soma': (number1, number2) => number1 + number2,
-  'subtração': (number1, number2) => number1 - number2,
-  'multiplicação': (number1, number2) => number1 * number2,
-  'divisão' : (number1, number2) => number1 / number2,
-  'potência': (number1, number2) => Math.pow(number1, number2)
+  'soma': ([number1, number2]) => number1 + number2,
+  'subtração': ([number1, number2]) => number1 - number2,
+  'multiplicação': ([number1, number2]) => number1 * number2,
+  'divisão' : ([number1, number2]) => number1 / number2,
+  'potência': ([number1, number2]) => Math.pow(number1, number2)
 }
 
 function createCalculator() {
@@ -63,6 +71,7 @@ function createCalculator() {
     const result = document.createElement('p')
     if (isNaN(number1) || isNaN(number2)) {
       result.innerText = 'Insira um número!'
+      response.innerHTML = ''
       response.appendChild(result)
 
       return
@@ -71,16 +80,18 @@ function createCalculator() {
     const calculate = calculator[operation]
     if (!calculate) {
       result.innerText = 'Escolha uma operação válida!'
+      response.innerHTML = ''
       response.appendChild(result)
 
       return
     }
 
-    const resultValue = calculate(number1, number2)
+    const resultValue = calculate([number1, number2])
     
     console.log(resultValue)
     if (isNaN(resultValue) || resultValue === Infinity) {
       result.innerText = 'Error 😕'
+      response.innerHTML = ''
       response.appendChild(result)
 
       return
@@ -90,7 +101,6 @@ function createCalculator() {
 
     response.innerHTML = ''
     response.appendChild(result)
-    console.log('asdasd')
   })
 
   html.appendChild(button)
